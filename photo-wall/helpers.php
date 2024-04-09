@@ -1,4 +1,9 @@
 <?php
+  // Set CORS headers
+  header('Access-Control-Allow-Origin: *');
+  header('Access-Control-Allow-Methods: *');
+  header('Access-Control-Allow-Headers: Content-Type, Accept');
+
   function get_method () {
 		return $_SERVER['REQUEST_METHOD'];
 	}
@@ -15,4 +20,18 @@
   function get_env ($key) {
     $env = parse_ini_file('../.env');
     return $env[$key];
+  }
+
+  function query_database ($query, $return_last_id = false) {
+    $connection = new mysqli(get_env('DB_HOST'), get_env('DB_USERNAME'), get_env('DB_PASSWORD'), get_env('DB_DATABASE'));
+
+    if ($connection->connect_error) {
+      return "ERROR";
+    }
+
+    $result = $connection->query($query);
+    $last_id = $connection->insert_id;
+    $connection->close();
+
+    return $return_last_id ? $last_id : $result;
   }
