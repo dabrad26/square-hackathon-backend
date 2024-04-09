@@ -7,18 +7,18 @@
 	if ($method === 'GET') {
 		send_response([
 			'status' => 'success',
-			'message' => 'TODO: Get all reviews',
+			'data' => 'TODO: Get all reviews',
 		]);
 	}
 
 	if ($method === 'POST') {
 		send_response([
 			'status' => 'success',
-			'message' => 'TODO: Create a Review',
+			'data' => 'TODO: Create a Review',
 		]);
 	}
 
 	send_response(array(
 		'code' => 405,
-		'message' => 'HTTP Method not allowed'
+		'data' => 'HTTP Method not allowed'
 	), 405);

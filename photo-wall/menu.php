@@ -21,17 +21,17 @@
     if(curl_getinfo($curl, CURLINFO_HTTP_CODE) == 200) {
       send_response([
         'status' => 'success',
-        'message' => $jsonData,
+        'data' => $jsonData,
       ]);
     } else {
       send_response(array(
         'code' => 422,
-        'message' => $jsonData
+        'data' => $jsonData
       ), 422);
     }
 	}
 
 	send_response(array(
 		'code' => 405,
-		'message' => 'HTTP Method not allowed'
+		'data' => 'HTTP Method not allowed'
 	), 405);
