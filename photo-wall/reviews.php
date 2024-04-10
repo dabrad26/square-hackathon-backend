@@ -4,6 +4,11 @@
 	$method = get_method();
 	$data = get_request_data();
 
+  function remove_empty_string($var)
+  {
+    return $var != "";
+  }
+
 	if ($method === 'GET') {
     $review_results = query_database("SELECT * FROM Reviews");
     $final_results = array();
@@ -16,7 +21,7 @@
 
         if (mysqli_num_rows($photo_results) > 0) {
           while($photo_row = mysqli_fetch_assoc($photo_results)) {
-            array_push($photo_entry, array("review_id" => $photo_row['review_id'], "url" => $photo_row['url'], "foods" => explode(",", $photo_row['foods'])));
+            array_push($photo_entry, array("review_id" => $photo_row['review_id'], "url" => $photo_row['url'], "foods" => array_filter(explode(",", $photo_row['foods']), 'remove_empty_string')));
           }
         }
 
