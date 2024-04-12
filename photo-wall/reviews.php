@@ -32,7 +32,7 @@
 
 		send_response([
 			'status' => 'success',
-			'data' => $final_results
+			'data' => array_reverse($final_results)
 		]);
 	}
 

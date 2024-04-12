@@ -7,7 +7,7 @@
 
 	if ($method === 'GET') {
     $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, "$square_api/catalog/list");
+    curl_setopt($curl, CURLOPT_URL, "$square_api/catalog/list?types=category,image,item");
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, [
       'Accept: application/json',
