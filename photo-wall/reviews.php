@@ -21,11 +21,11 @@
 
         if (mysqli_num_rows($photo_results) > 0) {
           while($photo_row = mysqli_fetch_assoc($photo_results)) {
-            array_push($photo_entry, array("review_id" => $photo_row['review_id'], "url" => $photo_row['url'], "foods" => array_filter(explode(",", $photo_row['foods']), 'remove_empty_string')));
+            array_push($photo_entry, array("review_id" => strval($photo_row['review_id']), "url" => $photo_row['url'], "foods" => array_filter(explode(",", $photo_row['foods']), 'remove_empty_string')));
           }
         }
 
-        $review_entry = array("id" => $row['id'], "text" => $row['text'], "photos" => $photo_entry);
+        $review_entry = array("id" => strval($row['id']), "text" => $row['text'], "photos" => $photo_entry);
         array_push($final_results, $review_entry);
       }
     }
@@ -49,7 +49,7 @@
     }
 
     $new_review_id = query_database("INSERT INTO Reviews (text) VALUES (\"$text\")", true);
-    $data["id"] = $new_review_id;
+    $data["id"] = strval($new_review_id);
 
     foreach ($data['photos'] as &$photo) {
       $photo["review_id"] = $new_review_id;
