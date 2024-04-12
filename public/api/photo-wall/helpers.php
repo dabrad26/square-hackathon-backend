@@ -18,7 +18,7 @@
 	}
 
   function get_env ($key) {
-    $env = parse_ini_file('../.env');
+    $env = parse_ini_file('../../../secrets/photo-wall.txt');
     return $env[$key];
   }
 

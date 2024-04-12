@@ -1,0 +1,6 @@
+DB_HOST="server:port"
+DB_DATABASE="database_name"
+DB_USERNAME="database_user"
+DB_PASSWORD="database_password"
+SQUARE_API_URL="https://connect.squareup.com/v2"
+SQUARE_API_KEY="square_api_key"
