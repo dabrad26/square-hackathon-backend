@@ -1,3 +1,4 @@
 vendor/
 .env
 secrets/
+public/api/photo-wall/images

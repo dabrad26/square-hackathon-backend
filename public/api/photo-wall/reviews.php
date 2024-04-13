@@ -54,8 +54,13 @@
     foreach ($data['photos'] as &$photo) {
       $photo["review_id"] = $new_review_id;
       $url = $photo["url"];
+      $unique_id = uniqid();
+      $extension = explode(";base64", explode("data:image/", $url)[1])[0];
+      $output_file = "images/$unique_id.$extension";
+      $photo["url"] = $output_file;
+      file_put_contents($output_file, file_get_contents($url));
       $foods = isset($photo["foods"]) ? implode(',', $photo["foods"]) : '';
-      query_database("INSERT INTO Photos (review_id, url, foods) VALUES ($new_review_id, \"$url\", \"$foods\")");
+      query_database("INSERT INTO Photos (review_id, url, foods) VALUES ($new_review_id, \"$output_file\", \"$foods\")");
     }
 
 		send_response([
